@@ -5,44 +5,125 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Mergington High School Activities</title>
     <link rel="stylesheet" href="styles.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
   </head>
   <body>
     <header>
-      <h1>Mergington High School</h1>
-      <h2>Extracurricular Activities</h2>
+      <div class="header-content">
+        <div class="logo">
+          <svg width="40" height="40" viewBox="0 0 40 40" fill="none">
+            <rect width="40" height="40" rx="8" fill="#FFD700"/>
+            <path d="M12 28V12L20 20L28 12V28" stroke="#1a237e" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+          <div>
+            <h1 data-i18n="schoolName">Mergington High School</h1>
+            <h2 data-i18n="subtitle">Extracurricular Activities Portal</h2>
+          </div>
+        </div>
+        <div class="header-right">
+          <div class="language-selector">
+            <button class="lang-btn active" data-lang="en" title="English">
+              <svg width="20" height="20" viewBox="0 0 32 32">
+                <rect width="32" height="32" fill="#012169"/>
+                <path d="M0 0l32 19M32 0L0 19M0 13h32M13 0v32" stroke="#fff" stroke-width="3.2"/>
+                <path d="M0 16h32M16 0v32" stroke="#C8102E" stroke-width="2"/>
+                <path d="M0 0l32 19m0-19L0 19" stroke="#C8102E" stroke-width="1.6"/>
+              </svg>
+              EN
+            </button>
+            <button class="lang-btn" data-lang="pt" title="Português">
+              <svg width="20" height="20" viewBox="0 0 30 20">
+                <rect width="30" height="20" fill="#006600"/>
+                <rect x="10" width="20" height="20" fill="#FF0000"/>
+                <circle cx="10" cy="10" r="3.5" fill="#FFFF00" stroke="#000080" stroke-width="0.5"/>
+              </svg>
+              PT
+            </button>
+          </div>
+          <div class="stats" id="stats">
+            <div class="stat-item">
+              <span class="stat-number">0</span>
+              <span class="stat-label" data-i18n="statsActivities">Activities</span>
+            </div>
+            <div class="stat-item">
+              <span class="stat-number">0</span>
+              <span class="stat-label" data-i18n="statsStudents">Students</span>
+            </div>
+          </div>
+        </div>
+      </div>
     </header>
 
     <main>
       <section id="activities-container">
-        <h3>Available Activities</h3>
-        <div id="activities-list">
-          <!-- Activities will be loaded here -->
-          <p>Loading activities...</p>
+        <div class="section-header">
+          <h3><span>🎯</span> <span data-i18n="browseActivities">Browse Activities</span></h3>
+          <div class="controls">
+            <div class="search-box">
+              <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                <circle cx="9" cy="9" r="7" stroke="currentColor" stroke-width="2"/>
+                <path d="M14 14L18 18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+              </svg>
+              <input type="text" id="search" data-i18n-placeholder="searchPlaceholder" placeholder="Search activities..." />
+            </div>
+            <div class="filter-buttons">
+              <button class="filter-btn active" data-category="all" data-i18n="filterAll">All</button>
+              <button class="filter-btn" data-category="sports"><span>⚽</span> <span data-i18n="filterSports">Sports</span></button>
+              <button class="filter-btn" data-category="arts"><span>🎨</span> <span data-i18n="filterArts">Arts</span></button>
+              <button class="filter-btn" data-category="academic"><span>📚</span> <span data-i18n="filterAcademic">Academic</span></button>
+              <button class="filter-btn" data-category="other"><span>✨</span> <span data-i18n="filterOther">Other</span></button>
+            </div>
+          </div>
+        </div>
+        <div id="activities-list" class="activities-grid">
+          <div class="loading">
+            <div class="spinner"></div>
+            <p>Loading activities...</p>
+          </div>
         </div>
       </section>
 
-      <section id="signup-container">
-        <h3>Sign Up for an Activity</h3>
+      <section id="signup-container" class="sticky-form">
+        <div class="section-header">
+          <h3><span>📝</span> <span data-i18n="quickSignup">Quick Sign Up</span></h3>
+        </div>
         <form id="signup-form">
           <div class="form-group">
-            <label for="email">Student Email:</label>
-            <input type="email" id="email" required placeholder="your-email@mergington.edu" />
+            <label for="email">
+              <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor">
+                <path d="M0 4a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V4zm2-1a1 1 0 0 0-1 1v.217l7 4.2 7-4.2V4a1 1 0 0 0-1-1H2zm13 2.383-4.758 2.855L15 11.114v-5.73zm-.034 6.878L9.271 8.82 8 9.583 6.728 8.82l-5.694 3.44A1 1 0 0 0 2 13h12a1 1 0 0 0 .966-.739zM1 11.114l4.758-2.876L1 5.383v5.73z"/>
+              </svg>
+              <span data-i18n="labelEmail">Student Email</span>
+            </label>
+            <input type="email" id="email" required data-i18n-placeholder="emailPlaceholder" placeholder="student@mergington.edu" />
           </div>
           <div class="form-group">
-            <label for="activity">Select Activity:</label>
-            <select id="activity" required>
-              <option value="">-- Select an activity --</option>
-              <!-- Activity options will be loaded here -->
+            <label for="activity">
+              <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor">
+                <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
+                <path d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z"/>
+              </svg>
+              <span data-i18n="labelActivity">Select Activity</span>
+            </label>
+            <select id="activity" required data-i18n-option="activityPlaceholder">
+              <option value="" data-i18n="activityPlaceholder">Choose an activity...</option>
             </select>
           </div>
-          <button type="submit">Sign Up</button>
+          <button type="submit" class="btn-primary">
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor">
+              <path d="M10.97 4.97a.75.75 0 0 1 1.07 1.05l-3.99 4.99a.75.75 0 0 1-1.08.02L4.324 8.384a.75.75 0 1 1 1.06-1.06l2.094 2.093 3.473-4.425a.267.267 0 0 1 .02-.022z"/>
+            </svg>
+            <span data-i18n="btnSignup">Sign Up Now</span>
+          </button>
         </form>
         <div id="message" class="hidden"></div>
       </section>
     </main>
 
     <footer>
-      <p>&copy; 2023 Mergington High School</p>
+      <p data-i18n="footer">Made with ❤️ by Mergington High School · © 2026</p>
     </footer>
 
     <script src="app.js"></script>
